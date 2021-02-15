@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="XamineRIS-RE-JAVA:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>XamineRIS-RE-JAVA</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="XamineRIS-RE-JAVA-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="XamineRIS-RE-JAVA:war exploded" />
+    </root>
+  </artifact>
+</component>
