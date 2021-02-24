@@ -6,7 +6,7 @@
     <title>XamineRIS - Login</title>
 </head>
 <body class="text_center">
-    <form class="form_signIn" method="post">
+    <form class="form_signIn" method="post" action="/admin">
         <h1>
             <img src="xamineLogo.png" alt="XamineRIS Logo" id="logoImg" width="60px" height="60px">
         </h1>

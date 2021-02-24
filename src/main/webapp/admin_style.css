@@ -1,0 +1,42 @@
+#nav_bar {
+    display: flex;
+    position: fixed;
+    background-color: #f8f9fa;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .5rem 1rem;
+}
+
+#titleLink {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    line-height: inherit;
+}
+
+img {
+    display: inline-block;
+    line-height: 1;
+}
+
+#nav_elements {
+    display: flex;
+    flex-basis: auto;
+}
+
+#pageLinks {
+    display: flex;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    list-style: none;
+}
+
+#loginAsUser {
+    display: inline-block;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    float: right;
+}
