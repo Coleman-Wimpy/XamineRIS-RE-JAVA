@@ -8,7 +8,7 @@
 </head>
 <body class="text_center">
     <!-- Create a form that sends a http post request on the path /admin -->
-    <form class="form_signIn" method="post" action="/admin">
+    <form class="form_signIn" method="post" action="/login">
         <h1>
             <!-- diplays a logo -->
             <img src="xamineLogo.png" alt="XamineRIS Logo" id="logoImg" width="60px" height="60px">
@@ -16,6 +16,9 @@
         <!-- Creates a Header element that will display in larger text than the rest of the elements -->
         <h1 id="titleHeader">Xamine RIS</h1>
 
+        <div class="form_group">
+            <p>${error}</p>
+        </div>
         <!-- creats a div element to hold the username field of the login -->
         <div class="form_group" id="div_username">
             <!-- Label for the Username Input field so the user knows what to enter -->

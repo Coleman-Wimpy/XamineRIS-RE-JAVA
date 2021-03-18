@@ -36,7 +36,7 @@
         </ul>
 
         <!-- display the currently logged in user -->
-        <span id="loginAsUser" class="text-gray-500 inline-block py-2">Logged in as ${user}</span>
+        <span id="loginAsUser" class="text-gray-500 inline-block py-2">Logged in as <strong>${user}</strong></span>
     </div>
 </nav>
 
