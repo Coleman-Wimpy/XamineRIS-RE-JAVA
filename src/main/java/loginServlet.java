@@ -26,11 +26,11 @@ public class loginServlet extends HttpServlet implements UserLogin{
             if (bsonDocument != null) {
                 if (bsonDocument.getInt32("groupId").getValue() == 1) {
                     request.setAttribute("user", username);
-                    getServletContext().getRequestDispatcher("/administrator.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/admin").forward(request, response);
                 }
                 else if (bsonDocument.getInt32("groupId").getValue() == 4) {
                     request.setAttribute("user", username);
-                    getServletContext().getRequestDispatcher("/patientPage.jsp").forward(request,response);
+                    getServletContext().getRequestDispatcher("/patientPortal").forward(request, response);
                 }
             }
             else {

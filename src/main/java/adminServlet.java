@@ -15,11 +15,12 @@ public class adminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // forwards the request and response information to the /administrator.jsp page to display it to the user
+
     }
 
     // doPost method that handles any POST requests sent to /admin
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        getServletContext().getRequestDispatcher("/administrator.jsp").forward(request, response);
     }
 }
