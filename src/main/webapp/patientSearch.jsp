@@ -35,15 +35,25 @@
     </nav>
 
     <div>
-        <form id="patientSearchForm" action="patientSearch.jsp" method="POST">
+        <form id="patientSearchForm" action="/admin" method="POST">
             <div class="py-8">
                 <div class="mt-8 max-w-md">
                     <div class="grid grid-cols-1 gap-6">
                         <label class="block">
-                            <span class="text-gray-700">Patient name</span>
+                            <span class="text-gray-700">Patient first name</span>
                             <input
                                     type="text"
                                     class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                    name="firstName"
+                                    placeholder=""
+                            />
+                        </label>
+                        <label class="block">
+                            <span class="text-gray-700">Patient last name</span>
+                            <input
+                                    type="text"
+                                    class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                    name="lastName"
                                     placeholder=""
                             />
                         </label>
@@ -52,6 +62,8 @@
             </div>
             <input type="submit" value="Submit"/>
         </form>
+
+        <p>${firstName} ${lastName}</p>
     </div>
 </body>
 </html>
