@@ -21,16 +21,22 @@ public class loginServlet extends HttpServlet implements UserLogin{
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        HttpSession session = request.getSession();
+
         if (username != null && password != null) {
             BsonDocument bsonDocument = loginAttempt(username, password);
             if (bsonDocument != null) {
                 if (bsonDocument.getInt32("groupId").getValue() == 1) {
-                    request.setAttribute("user", username);
-                    getServletContext().getRequestDispatcher("/patientSearch.jsp").forward(request, response);
+                    session.setAttribute("user", username);
+                    response.sendRedirect("/patientPortal");
                 }
-                else if (bsonDocument.getInt32("groupId").getValue() == 4) {
-                    request.setAttribute("user", username);
-                    getServletContext().getRequestDispatcher("/patientPortal.jsp").forward(request, response);
+                else if (bsonDocument.getInt32("groupId").getValue() == 2) {
+                    session.setAttribute("user", username);
+                    response.sendRedirect("/receptionist");
+                }
+                else if (bsonDocument.getInt32("groupId").getValue() == 5) {
+                    session.setAttribute("user", username);
+                    response.sendRedirect("/admin");
                 }
             }
             else {

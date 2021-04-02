@@ -4,92 +4,114 @@ import java.util.Date;
 
 // patient class that will hold the methods for a patient object
 public class Patient {
-	private Date birthDay;
-	private String name;
-	private String phoneNumber;
-	private String SSN;
-	private ArrayList<Appointment> appoints;
-	
-	private String otherInfos;	// the infos that the doctor can add for the patient
+	private String birthDay;
+	private String firstName;
+	private String lastName;
+	private String middleName;
+	private String email;
+	private int phoneNumber;
+	private Boolean asthmaAllergy, xraydyeAllergy, mriAllergy, latexAllergy;
+	private String notes;
 
-    public Patient() {
-        appoints= new ArrayList<Appointment>();
+    public Patient(String birthDay, String firstName, String lastName, String middleName, String email, int phoneNumber, Boolean asthmaAllergy, Boolean xraydyeAllergy, Boolean mriAllergy, Boolean latexAllergy, String notes) {
+        this.birthDay = birthDay;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.asthmaAllergy = asthmaAllergy;
+        this.xraydyeAllergy = xraydyeAllergy;
+        this.mriAllergy = mriAllergy;
+        this.latexAllergy = latexAllergy;
+        this.notes = notes;
     }
 
-    // patient constructor using the parameters
-    public Patient(String name, Date birthDay, String phoneNumber, String sSN) {
-    	this.name = name;
-		this.birthDay = birthDay;
-		this.phoneNumber = phoneNumber;
-		SSN = sSN;
-		appoints= new ArrayList<Appointment>();
-	}
-
-	// getter and setter methods for all parameters
-	public Date getBirthDay() {
+    public String getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(Date birthDay) {
+    public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getPhoneNumber() {
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getSSN() {
-        return SSN;
+    public Boolean getAsthmaAllergy() {
+        return asthmaAllergy;
     }
 
-    public void setSSN(String SSN) {
-        this.SSN = SSN;
+    public void setAsthmaAllergy(Boolean asthmaAllergy) {
+        this.asthmaAllergy = asthmaAllergy;
     }
 
-    public ArrayList<Appointment> getAppoints() {
-        return appoints;
+    public Boolean getXraydyeAllergy() {
+        return xraydyeAllergy;
     }
 
-    public void setAppoints(ArrayList<Appointment> appoints) {
-        this.appoints = appoints;
+    public void setXraydyeAllergy(Boolean xraydyeAllergy) {
+        this.xraydyeAllergy = xraydyeAllergy;
     }
 
-    public void addAppointment(Appointment ap)
-    {
-        appoints.add(ap);
+    public Boolean getMriAllergy() {
+        return mriAllergy;
     }
 
-    // get data method that will return all the data from a patient
-    public String getData() {
-    	String str = "Patient[ Name: "+name+", Birthday: "+birthDay+", Phone number: "+phoneNumber+", SSN: "+SSN+" ]\n";
-    	str += "Appointments : "+appoints.size();
-    	for (int i=0; i<appoints.size(); i++) {
-    		str += "\nDate: " + appoints.get(i).getAppointDate() +
-    				", Address: " + appoints.get(i).getAddress() +
-    				", Doctor: " + appoints.get(i).getTreatmentDr().getName() +
-    				", Symptom: " + appoints.get(i).getSymptom();
-    	}
-    	return str;
+    public void setMriAllergy(Boolean mriAllergy) {
+        this.mriAllergy = mriAllergy;
     }
 
-	public String getOtherInfos() {
-		return otherInfos;
-	}
+    public Boolean getLatexAllergy() {
+        return latexAllergy;
+    }
 
-	public void setOtherInfos(String otherInfos) {
-		this.otherInfos = otherInfos;
-	}
-    
+    public void setLatexAllergy(Boolean latexAllergy) {
+        this.latexAllergy = latexAllergy;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

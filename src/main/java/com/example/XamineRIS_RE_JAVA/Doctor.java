@@ -46,7 +46,4 @@ public class Doctor {
 		this.departmentSpecialist = departmentSpecialist;
 	}
 
-    public void addPatientInfos(Patient p, String otherInfors) {
-    	p.setOtherInfos(otherInfors);
-    }
 }

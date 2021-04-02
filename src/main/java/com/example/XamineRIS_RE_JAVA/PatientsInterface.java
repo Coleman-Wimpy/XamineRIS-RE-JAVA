@@ -1,15 +1,16 @@
 package com.example.XamineRIS_RE_JAVA;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
+import org.bson.BsonDateTime;
 import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.function.Consumer;
+import com.example.XamineRIS_RE_JAVA.*;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -25,27 +26,34 @@ public interface PatientsInterface {
     // Creates a collection object that holds the users collection from the database that was loaded
     MongoCollection<Document> collection = db.getCollection("patients");
 
-    default BsonDocument getPatients(String firstName, String lastName) {
+    default Boolean createPatient(Document doc) {
+        if (collection.insertOne(doc).wasAcknowledged())
+            return true;
+       else
+           return false;
+    }
 
+    default ArrayList<Document> getPatients(String dob) {
 
-        Iterable findIterable = collection.find(eq("firstName", firstName));
+        FindIterable<Document> findIterable = collection.find(eq("DOB", dob));
 
         if (findIterable == null) {
+            System.out.println("No objects found");
             return null;
         }
         else {
-            final BsonDocument[] bsonDocuments = new BsonDocument[1];
+            ArrayList<Document> bdocuments = new ArrayList<>();
 
             Consumer<Document> printConsumer = new Consumer<Document>() {
                 @Override
                 public void accept(Document document) {
-                    bsonDocuments[0] = document.toBsonDocument();
+                   bdocuments.add(document);
                 }
             };
 
             findIterable.forEach(printConsumer);
 
-            return bsonDocuments[0];
+            return bdocuments;
         }
     }
 }
