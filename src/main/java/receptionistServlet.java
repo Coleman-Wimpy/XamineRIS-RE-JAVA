@@ -27,6 +27,7 @@ public class receptionistServlet extends HttpServlet implements PatientsInterfac
 
         if (dob != null) {
             ArrayList<Document> bDocuments = getPatients(dob);
+            String patientsResult = "";
             System.out.println("Grabbing patients");
 
             for (int i = bDocuments.size()-1; i >= 0; i--) {
@@ -35,12 +36,11 @@ public class receptionistServlet extends HttpServlet implements PatientsInterfac
                 String fName = bDocuments.get(i).getString("firstName");
                 String lName = bDocuments.get(i).getString("lastName");
                 String Dob = bDocuments.get(i).getString("DOB");
-                String result = "<li>" + fName + " " + lName + " D.O.B: " + Dob + "</li>";
-                System.out.println(result);
-                request.setAttribute("patient", result);
-                request.setAttribute("current_dob", Dob);
-                getServletContext().getRequestDispatcher("/patientSearch.jsp").forward(request, response);
+                patientsResult += "<li><a href=\"/patientRPage\">" + fName + " " + lName + "</a> D.O.B: " + Dob + "</li><br>";
             }
+
+            request.setAttribute("patient", patientsResult);
+            getServletContext().getRequestDispatcher("/patientSearch.jsp").forward(request, response);
         }
         else {
             System.out.println("DOB not recieved.");
