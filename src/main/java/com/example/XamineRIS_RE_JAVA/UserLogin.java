@@ -27,7 +27,7 @@ public interface UserLogin {
     // Creates a collection object that holds the users collection from the database that was loaded
     MongoCollection<Document> collection = db.getCollection("users");
 
-    // Initializes an Iterable object
+    // Initializes an Iterable objectc
 
 
     // Method that will be used in the login servlet class to pass the username and password that was entered

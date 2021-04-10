@@ -114,4 +114,8 @@ public class Patient {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+    public String getName() {
+        return firstName +" "+lastName;
+    }
 }
