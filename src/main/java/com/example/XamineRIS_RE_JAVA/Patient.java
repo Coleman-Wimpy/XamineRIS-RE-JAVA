@@ -9,11 +9,12 @@ public class Patient {
 	private String lastName;
 	private String middleName;
 	private String email;
-	private int phoneNumber;
+	private long phoneNumber;
 	private Boolean asthmaAllergy, xraydyeAllergy, mriAllergy, latexAllergy;
 	private String notes;
+	private Object orders;
 
-    public Patient(String birthDay, String firstName, String lastName, String middleName, String email, int phoneNumber, Boolean asthmaAllergy, Boolean xraydyeAllergy, Boolean mriAllergy, Boolean latexAllergy, String notes) {
+    public Patient(String birthDay, String firstName, String lastName, String middleName, String email, long phoneNumber, Boolean asthmaAllergy, Boolean xraydyeAllergy, Boolean mriAllergy, Boolean latexAllergy, String notes, Object orders) {
         this.birthDay = birthDay;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,6 +26,7 @@ public class Patient {
         this.mriAllergy = mriAllergy;
         this.latexAllergy = latexAllergy;
         this.notes = notes;
+        this.orders = orders;
     }
 
     public String getBirthDay() {
@@ -67,11 +69,11 @@ public class Patient {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -117,5 +119,17 @@ public class Patient {
 
     public String getName() {
         return firstName +" "+lastName;
+    }
+
+    public void setOrders(Object orders) {
+        this.orders = orders;
+    }
+
+    public Object getOrders() {
+        return orders;
+    }
+
+    public String toString() {
+        return this.firstName + " " + this.lastName + " DOB: " + this.birthDay + " " + phoneNumber;
     }
 }

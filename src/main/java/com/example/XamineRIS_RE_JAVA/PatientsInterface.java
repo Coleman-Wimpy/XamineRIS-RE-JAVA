@@ -7,11 +7,14 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 
 import java.io.PrintWriter;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import java.util.function.Consumer;
 import com.example.XamineRIS_RE_JAVA.*;
 
+import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 
 public interface PatientsInterface {
@@ -48,6 +51,30 @@ public interface PatientsInterface {
                 @Override
                 public void accept(Document document) {
                    bdocuments.add(document);
+                }
+            };
+
+            findIterable.forEach(printConsumer);
+
+            return bdocuments;
+        }
+    }
+
+    default ArrayList<Document> getPatient(String firstName, String lastName) {
+
+        FindIterable<Document> findIterable = collection.find(and(eq("firstName", firstName), (eq("lastName", lastName))));
+
+        if (findIterable == null) {
+            System.out.println("No objects found");
+            return null;
+        }
+        else {
+            ArrayList<Document> bdocuments = new ArrayList<>();
+
+            Consumer<Document> printConsumer = new Consumer<Document>() {
+                @Override
+                public void accept(Document document) {
+                    bdocuments.add(document);
                 }
             };
 

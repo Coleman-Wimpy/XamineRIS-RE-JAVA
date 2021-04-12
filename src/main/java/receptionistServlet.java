@@ -36,7 +36,7 @@ public class receptionistServlet extends HttpServlet implements PatientsInterfac
                 String fName = bDocuments.get(i).getString("firstName");
                 String lName = bDocuments.get(i).getString("lastName");
                 String Dob = bDocuments.get(i).getString("DOB");
-                patientsResult += "<li><a href=\"/patientRPage\">" + fName + " " + lName + "</a> D.O.B: " + Dob + "</li><br>";
+                patientsResult += "<form method=\"POST\" action=\"/patientRPage\"><li>" + fName + " " + lName + " D.O.B: " + Dob + " <button type=\"submit\" name=\"btn\" id=\"btn\" value=\"" + fName + "_" + lName + "\">View</button></li></form>";
             }
 
             request.setAttribute("patient", patientsResult);
