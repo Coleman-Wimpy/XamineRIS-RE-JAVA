@@ -36,6 +36,6 @@ public class OrderRefPageServlet extends HttpServlet implements OrderInterface {
             request.setAttribute("orderNotes", orderDoc.get(0).getString("orderNotes"));
         }
 
-        getServletContext().getRequestDispatcher("/orderRefPage.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/referral/orderRefPage.jsp").forward(request, response);
     }
 }

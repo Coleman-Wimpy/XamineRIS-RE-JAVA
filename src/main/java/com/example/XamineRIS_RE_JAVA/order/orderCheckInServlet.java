@@ -36,6 +36,6 @@ public class orderCheckInServlet extends HttpServlet implements OrderInterface {
             request.setAttribute("orderNotes", orderDoc.get(0).getString("orderNotes"));
         }
 
-        getServletContext().getRequestDispatcher("/orderReceptPage.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/receptionist/orderReceptPage.jsp").forward(request, response);
     }
 }

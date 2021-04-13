@@ -50,6 +50,6 @@ public class newPatientServlet extends HttpServlet implements PatientsInterface 
         {
             request.setAttribute("message", "Error adding new patient");
         }
-        getServletContext().getRequestDispatcher("/patientSearch.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/referral/patientSearch.jsp").forward(request, response);
     }
 }

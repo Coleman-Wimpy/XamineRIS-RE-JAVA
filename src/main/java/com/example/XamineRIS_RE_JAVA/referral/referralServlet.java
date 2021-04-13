@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class referralServlet extends HttpServlet implements PatientsInterface {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/patientSearch.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/referral/patientSearch.jsp").forward(request, response);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class referralServlet extends HttpServlet implements PatientsInterface {
             }
 
             request.setAttribute("patient", patientsResult);
-            getServletContext().getRequestDispatcher("/patientSearch.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/referral/patientSearch.jsp").forward(request, response);
         }
         else {
             System.out.println("DOB not recieved.");

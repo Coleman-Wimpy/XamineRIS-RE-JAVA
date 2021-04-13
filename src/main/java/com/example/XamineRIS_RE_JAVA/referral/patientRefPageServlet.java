@@ -53,7 +53,7 @@ public class patientRefPageServlet extends HttpServlet implements PatientsInterf
 
 
             request.setAttribute("order", order);
-            getServletContext().getRequestDispatcher("/patientRefPage.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/referral/patientRefPage.jsp").forward(request, response);
         }
         else {
             System.out.println("Patient not found");

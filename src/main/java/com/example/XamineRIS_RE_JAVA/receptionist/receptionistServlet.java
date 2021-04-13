@@ -14,7 +14,7 @@ public class receptionistServlet extends HttpServlet implements PatientsInterfac
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/patientReceptSearch.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/receptionist/patientReceptSearch.jsp").forward(request, response);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class receptionistServlet extends HttpServlet implements PatientsInterfac
             }
 
             request.setAttribute("patient", patientsResult);
-            getServletContext().getRequestDispatcher("/patientSearch.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/receptionist/patientReceptSearch.jsp").forward(request, response);
         }
         else {
             System.out.println("DOB not recieved.");

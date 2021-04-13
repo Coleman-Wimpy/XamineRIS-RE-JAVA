@@ -77,7 +77,7 @@ public class createOrderServlet extends HttpServlet implements OrderInterface, P
 
 
             request.setAttribute("order", orders);
-            getServletContext().getRequestDispatcher("/patientRefPage.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/referral/patientRefPage.jsp").forward(request, response);
         }
     }
 }
