@@ -1,4 +1,6 @@
 package com.example.XamineRIS_RE_JAVA;
+import com.example.XamineRIS_RE_JAVA.patient.Patient;
+
 import java.util.Date;
 
 // Class that holds the methods for an appointment object

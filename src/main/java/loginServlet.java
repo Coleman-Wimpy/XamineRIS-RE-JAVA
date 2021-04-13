@@ -28,13 +28,30 @@ public class loginServlet extends HttpServlet implements UserLogin{
             if (bsonDocument != null) {
                 if (bsonDocument.getInt32("groupId").getValue() == 1) {
                     session.setAttribute("user", username);
+                    session.setAttribute("role", "Patient");
                     response.sendRedirect("/patientPortal");
                 }
                 else if (bsonDocument.getInt32("groupId").getValue() == 2) {
                     session.setAttribute("user", username);
+                    session.setAttribute("role", "Receptionist");
                     response.sendRedirect("/receptionist");
                 }
+                else if (bsonDocument.getInt32("groupId").getValue() == 3) {
+                    session.setAttribute("user", username);
+                    session.setAttribute("role", "Referral Doctor");
+                    response.sendRedirect("/referral");
+                }
+                else if (bsonDocument.getInt32("groupId").getValue() == 4) {
+                    session.setAttribute("user", username);
+                    session.setAttribute("role", "Radiologist");
+                    response.sendRedirect("/radiologist");
+                }
                 else if (bsonDocument.getInt32("groupId").getValue() == 5) {
+                    session.setAttribute("user", username);
+                    session.setAttribute("role", "Radiology Technician");
+                    response.sendRedirect("/radioTech");
+                }
+                else if (bsonDocument.getInt32("groupId").getValue() == 6) {
                     session.setAttribute("user", username);
                     response.sendRedirect("/admin");
                 }

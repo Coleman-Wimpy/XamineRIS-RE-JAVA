@@ -1,4 +1,6 @@
-package com.example.XamineRIS_RE_JAVA;
+package com.example.XamineRIS_RE_JAVA.order;
+
+import com.example.XamineRIS_RE_JAVA.OrderImage;
 
 import java.awt.*;
 import java.util.ArrayList;

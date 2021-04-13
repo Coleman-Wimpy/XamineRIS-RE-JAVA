@@ -1,6 +1,7 @@
-import com.example.XamineRIS_RE_JAVA.OrderInterface;
-import com.example.XamineRIS_RE_JAVA.Patient;
-import com.example.XamineRIS_RE_JAVA.PatientsInterface;
+package com.example.XamineRIS_RE_JAVA.receptionist;
+
+import com.example.XamineRIS_RE_JAVA.order.OrderInterface;
+import com.example.XamineRIS_RE_JAVA.patient.PatientsInterface;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -9,8 +10,8 @@ import org.bson.Document;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "patientRPageServlet", value = "/patientRPage")
-public class patientRPageServlet extends HttpServlet implements PatientsInterface, OrderInterface {
+@WebServlet(name = "com.example.XamineRIS_RE_JAVA.receptionist.patientReceptPageServlet", value = "/patientReceptPage")
+public class patientReceptPageServlet extends HttpServlet implements PatientsInterface, OrderInterface {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -18,6 +19,7 @@ public class patientRPageServlet extends HttpServlet implements PatientsInterfac
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String name = request.getParameter("btn");
         int split = name.indexOf('_');
 
@@ -40,10 +42,18 @@ public class patientRPageServlet extends HttpServlet implements PatientsInterfac
             request.setAttribute("asthma", bDocuments.get(0).getBoolean("ashtmaAllergy"));
             request.setAttribute("notes", bDocuments.get(0).getString("notes"));
 
-            ArrayList<Document> orderDocument = getOrders(fName, lName, bDocuments.get(0).getString("DOB"));
+            ArrayList<Document> orderDocuments = getOrders(fName, lName, bDocuments.get(0).getString("DOB"));
+
+            String order = "";
+            for (int i = orderDocuments.size()-1; i >= 0; i--) {
+                int orderNum = orderDocuments.get(i).getInteger("orderNumber");
+                String status = orderDocuments.get(i).getString("status");
+                order += "<tr><td>" + orderNum + "</td><td>" + status + " </td><td><form method=\"POST\" action=\"/OrderReceptPage\"><button type=\"submit\" name=\"btn\" id=\"btn\" value=\"" + orderNum + "_" + status + "\"> View</button></form></td></tr>";
+            }
 
 
-            getServletContext().getRequestDispatcher("/patientRPage.jsp").forward(request, response);
+            request.setAttribute("order", order);
+            getServletContext().getRequestDispatcher("/patientReceptPage.jsp").forward(request, response);
         }
         else {
             System.out.println("Patient not found");

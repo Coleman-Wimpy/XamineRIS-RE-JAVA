@@ -1,5 +1,7 @@
 package com.example.XamineRIS_RE_JAVA;
 
+import com.example.XamineRIS_RE_JAVA.patient.Patient;
+
 public class RadiologyTechnician {
 
 	private String name;

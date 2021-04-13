@@ -1,5 +1,6 @@
-import com.example.XamineRIS_RE_JAVA.Patient;
-import com.example.XamineRIS_RE_JAVA.PatientsInterface;
+package com.example.XamineRIS_RE_JAVA.patient;
+
+import com.example.XamineRIS_RE_JAVA.patient.PatientsInterface;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -7,7 +8,7 @@ import org.bson.Document;
 
 import java.io.IOException;
 
-@WebServlet(name = "newPatientServlet", value = "/patient/new")
+@WebServlet(name = "com.example.XamineRIS_RE_JAVA.patient.newPatientServlet", value = "/patient/new")
 public class newPatientServlet extends HttpServlet implements PatientsInterface {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

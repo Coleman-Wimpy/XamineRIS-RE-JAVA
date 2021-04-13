@@ -1,18 +1,16 @@
-import com.example.XamineRIS_RE_JAVA.PatientsInterface;
+package com.example.XamineRIS_RE_JAVA.referral;
+
+import com.example.XamineRIS_RE_JAVA.patient.PatientsInterface;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import org.bson.BsonDateTime;
-import org.bson.BsonDocument;
 import org.bson.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
-@WebServlet(name = "receptionistServlet", value = "/receptionist")
-public class receptionistServlet extends HttpServlet implements PatientsInterface {
-
+@WebServlet(name = "com.example.XamineRIS_RE_JAVA.referral.referralServlet", value = "/referral")
+public class referralServlet extends HttpServlet implements PatientsInterface {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/patientSearch.jsp").forward(request, response);
@@ -36,7 +34,7 @@ public class receptionistServlet extends HttpServlet implements PatientsInterfac
                 String fName = bDocuments.get(i).getString("firstName");
                 String lName = bDocuments.get(i).getString("lastName");
                 String Dob = bDocuments.get(i).getString("DOB");
-                patientsResult += "<form method=\"POST\" action=\"/patientRPage\"><li>" + fName + " " + lName + " D.O.B: " + Dob + " <button type=\"submit\" name=\"btn\" id=\"btn\" value=\"" + fName + "_" + lName + "\">View</button></li></form>";
+                patientsResult += "<form method=\"POST\" action=\"/patientRefPage\"><li>" + fName + " " + lName + " D.O.B: " + Dob + " <button type=\"submit\" name=\"btn\" id=\"btn\" value=\"" + fName + "_" + lName + "\">View</button></li></form>";
             }
 
             request.setAttribute("patient", patientsResult);

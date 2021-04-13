@@ -1,4 +1,4 @@
-package com.example.XamineRIS_RE_JAVA;
+package com.example.XamineRIS_RE_JAVA.patient;
 import java.util.ArrayList;
 import java.util.Date;
 

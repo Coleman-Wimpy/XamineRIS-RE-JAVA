@@ -1,16 +1,13 @@
+import com.example.XamineRIS_RE_JAVA.patient.PatientsInterface;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import com.example.XamineRIS_RE_JAVA.*;
-import org.bson.BsonDocument;
 
 // WebServlet that will handle any GET or POST request sent to the /admin path
 @WebServlet(name = "adminServlet", value = "/admin")
-public class adminServlet extends HttpServlet implements PatientsInterface{
+public class adminServlet extends HttpServlet implements PatientsInterface {
 
     private HttpServletRequest request;
 

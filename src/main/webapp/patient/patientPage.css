@@ -1,0 +1,32 @@
+span {
+    display: flex;
+    flex-direction: row;
+}
+
+span p{
+    margin-left: 10px;
+}
+
+body {
+    margin-left: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+table {
+    margin: 10px;
+    padding: 5px;
+}
+
+tr {
+    padding-left: 5px;
+    padding-right: 5px;
+    justify-items: center;
+}
+
+th {
+    padding-left: 5px;
+    padding-right: 5px;
+    justify-content: center;
+}

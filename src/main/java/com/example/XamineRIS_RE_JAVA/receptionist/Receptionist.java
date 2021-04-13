@@ -1,4 +1,6 @@
-package com.example.XamineRIS_RE_JAVA;
+package com.example.XamineRIS_RE_JAVA.receptionist;
+
+import com.example.XamineRIS_RE_JAVA.AppointmentSystem;
 
 import java.util.ArrayList;
 import java.util.Date;
