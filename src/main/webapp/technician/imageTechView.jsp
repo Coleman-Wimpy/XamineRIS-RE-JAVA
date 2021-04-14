@@ -2,13 +2,13 @@
   Created by IntelliJ IDEA.
   User: cwimp
   Date: 4/13/2021
-  Time: 5:45 PM
+  Time: 9:26 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Technician Order Page</title>
+    <title>Image Technician View</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link href="../patient/patientPage.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -38,14 +38,10 @@
         </div>
     </nav><br>
 
+    <br>
+    <h4>Image Source</h4>
+    <p>${path}</p>
+    <img src="${path}" alt="image" width="500" height="700">
 
-    <div>
-        <br>
-        <h3>Checked In Orders</h3>
-
-        <div>
-            ${orders}
-        </div>
-    </div>
 </body>
 </html>

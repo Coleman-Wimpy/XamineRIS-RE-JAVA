@@ -98,6 +98,30 @@ public interface OrderInterface {
         }
     }
 
+    default ArrayList<Document> getCheckedInOrders() {
+
+        FindIterable<Document> findIterable = collection.find(eq("status", "Checked In"));
+
+        if (findIterable == null) {
+            System.out.println("No Orders Found");
+            return null;
+        } else {
+            ArrayList<Document> bdocuments = new ArrayList<>();
+
+            Consumer<Document> printConsumer = new Consumer<Document>() {
+                @Override
+                public void accept(Document document) {
+                    bdocuments.add(document);
+                    System.out.println("Found Order");
+                }
+            };
+
+            findIterable.forEach(printConsumer);
+
+            return bdocuments;
+        }
+    }
+
 
         default ArrayList<Document> getOrder ( int orderNum){
 
@@ -131,6 +155,8 @@ public interface OrderInterface {
 
             return false;
         }
+
+        //default Boolean addImage(String filePath, String fileName, int orderNum) {}
     }
 
 

@@ -6,6 +6,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.bson.Document;
 
+import java.io.File;
 import java.io.IOException;
 
 @WebServlet(name = "com.example.XamineRIS_RE_JAVA.patient.newPatientServlet", value = "/patient/new")
@@ -46,6 +47,16 @@ public class newPatientServlet extends HttpServlet implements PatientsInterface 
 
         if (task == true) {
             request.setAttribute("message", "Patient Added");
+            File f = new File("C:\\Users\\cwimp\\IdeaProjects\\XamineRIS-RE-JAVA\\src\\main\\webapp\\patientImages\\" + firstName + "_" + lastName);
+            try{
+                if(f.mkdir()) {
+                    System.out.println("Directory Created");
+                } else {
+                    System.out.println("Directory is not created");
+                }
+            } catch(Exception e){
+                e.printStackTrace();
+            }
         }else
         {
             request.setAttribute("message", "Error adding new patient");
