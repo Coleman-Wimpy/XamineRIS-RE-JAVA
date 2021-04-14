@@ -1,6 +1,7 @@
-package com.example.XamineRIS_RE_JAVA.patient;
+package com.example.XamineRIS_RE_JAVA.radiologist;
 
 import com.example.XamineRIS_RE_JAVA.order.OrderInterface;
+import com.example.XamineRIS_RE_JAVA.patient.PatientsInterface;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -8,18 +9,25 @@ import org.bson.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 
-@WebServlet(name = "com.example.XamineRIS_RE_JAVA.patient.patientServlet", value = "/patientPortal")
-public class patientServlet extends HttpServlet implements PatientsInterface, OrderInterface {
+@WebServlet(name = "patientRadioPageServlet", value = "/patientRadioPage")
+public class patientRadioPageServlet extends HttpServlet implements OrderInterface, PatientsInterface {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+    }
 
-        String username = session.getAttribute("user").toString();
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ArrayList<Document> bDocuments = getPatient(username);
+        String name = request.getParameter("btn");
+        int split = name.indexOf('_');
+
+        String fName = name.substring(0, split);
+        String lName = name.substring(split+1);
+        System.out.println(fName + " " + lName);
+
+        ArrayList<Document> bDocuments = getPatient(fName, lName);
 
         if (bDocuments != null) {
             request.setAttribute("firstName", bDocuments.get(0).getString("firstName"));
@@ -34,28 +42,21 @@ public class patientServlet extends HttpServlet implements PatientsInterface, Or
             request.setAttribute("asthma", bDocuments.get(0).getBoolean("ashtmaAllergy"));
             request.setAttribute("notes", bDocuments.get(0).getString("notes"));
 
-            ArrayList<Document> orderDocuments = getOrders(bDocuments.get(0).getString("firstName"), bDocuments.get(0).getString("lastName"), bDocuments.get(0).getString("DOB"));
+            ArrayList<Document> orderDocuments = getOrders(fName, lName, bDocuments.get(0).getString("DOB"));
 
             String order = "";
             for (int i = orderDocuments.size()-1; i >= 0; i--) {
                 int orderNum = orderDocuments.get(i).getInteger("orderNumber");
                 String status = orderDocuments.get(i).getString("status");
-                order += "<tr><td>" + orderNum + "</td><td>" + status + " </td><td><form method=\"POST\" action=\"\"><button type=\"submit\" name=\"btn\" id=\"btn\" value=\"" + orderNum + "_" + status + "\"> View</button></form></td></tr>";
-                //order += "<tr><td>" + orderNum + "</td><td>" + status + " </td><td><button type=\"button\" onclick=\"/OrderRefPage\" name=\"btn\" id=\"btn\" value=\"" + orderNum + "_" + status + "\"> View</button></td></tr>";
+                order += "<tr><td>" + orderNum + "</td><td>" + status + " </td><td><form method=\"POST\" action=\"/OrderRadioPage\"><button type=\"submit\" name=\"btn\" id=\"btn\" value=\"" + orderNum + "_" + status + "\"> View</button></form></td></tr>";
             }
 
 
             request.setAttribute("order", order);
-            getServletContext().getRequestDispatcher("/patient/patientPage.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/radiologist/patientRadiologistPage.jsp").forward(request, response);
         }
         else {
             System.out.println("Patient not found");
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
     }
 }

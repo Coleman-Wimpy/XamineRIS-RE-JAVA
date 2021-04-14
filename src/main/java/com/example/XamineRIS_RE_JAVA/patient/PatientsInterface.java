@@ -1,6 +1,7 @@
 package com.example.XamineRIS_RE_JAVA.patient;
 
 import com.mongodb.client.*;
+import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -54,6 +55,30 @@ public interface PatientsInterface {
     default ArrayList<Document> getPatient(String firstName, String lastName) {
 
         FindIterable<Document> findIterable = collection.find(and(eq("firstName", firstName), (eq("lastName", lastName))));
+
+        if (findIterable == null) {
+            System.out.println("No objects found");
+            return null;
+        }
+        else {
+            ArrayList<Document> bdocuments = new ArrayList<>();
+
+            Consumer<Document> printConsumer = new Consumer<Document>() {
+                @Override
+                public void accept(Document document) {
+                    bdocuments.add(document);
+                }
+            };
+
+            findIterable.forEach(printConsumer);
+
+            return bdocuments;
+        }
+    }
+
+    default ArrayList<Document> getPatient(String username) {
+
+        FindIterable<Document> findIterable = collection.find(eq("firstName", username));
 
         if (findIterable == null) {
             System.out.println("No objects found");

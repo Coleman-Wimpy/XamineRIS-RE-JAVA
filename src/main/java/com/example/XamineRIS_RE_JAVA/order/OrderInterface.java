@@ -157,6 +157,29 @@ public interface OrderInterface {
         }
 
         //default Boolean addImage(String filePath, String fileName, int orderNum) {}
+        default ArrayList<Document> getWaitingOrders() {
+
+            FindIterable<Document> findIterable = collection.find(eq("status", "Waiting Review"));
+
+            if (findIterable == null) {
+                System.out.println("No Orders Found");
+                return null;
+            } else {
+                ArrayList<Document> bdocuments = new ArrayList<>();
+
+                Consumer<Document> printConsumer = new Consumer<Document>() {
+                    @Override
+                    public void accept(Document document) {
+                        bdocuments.add(document);
+                        System.out.println("Found Order");
+                    }
+                };
+
+                findIterable.forEach(printConsumer);
+
+                return bdocuments;
+            }
+        }
     }
 
 

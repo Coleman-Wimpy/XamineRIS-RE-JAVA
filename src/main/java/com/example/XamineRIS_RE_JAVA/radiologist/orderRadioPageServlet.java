@@ -1,7 +1,6 @@
-package com.example.XamineRIS_RE_JAVA.technician;
+package com.example.XamineRIS_RE_JAVA.radiologist;
 
 import com.example.XamineRIS_RE_JAVA.order.OrderInterface;
-import com.example.XamineRIS_RE_JAVA.patient.PatientsInterface;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -9,18 +8,10 @@ import org.bson.Document;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
-@WebServlet(name = "ImageUploadHelperServlet", value = "/ImageUploadHelper")
-@MultipartConfig(
-        fileSizeThreshold = 1024 * 1024 * 1,
-        maxFileSize = 1024 * 1024 * 10,
-        maxRequestSize = 1024 * 1024 * 100
-)
-public class ImageUploadHelperServlet extends HttpServlet implements OrderInterface, PatientsInterface {
+@WebServlet(name = "orderRadioPageServlet", value = "/OrderRadioPage")
+public class orderRadioPageServlet extends HttpServlet implements OrderInterface {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -29,19 +20,9 @@ public class ImageUploadHelperServlet extends HttpServlet implements OrderInterf
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        int orderNum = Integer.parseInt(request.getParameter("btn"));
         HttpSession session = request.getSession();
-        int orderNum = Integer.parseInt(session.getAttribute("orderNum").toString());
-
-        Part filePart = request.getPart("file");
-        String fileName = filePart.getSubmittedFileName();
-        String patientName = request.getParameter("patientName");
-        System.out.println(patientName);
-        for (Part part: request.getParts()) {
-            part.write("C:\\Users\\cwimp\\IdeaProjects\\XamineRIS-RE-JAVA\\src\\main\\webapp\\patientImages\\" + patientName + "\\" + fileName);
-            String filePath = "C:\\Users\\cwimp\\IdeaProjects\\XamineRIS-RE-JAVA\\src\\main\\webapp\\patientImages\\" + patientName + "\\" + fileName;
-        }
-
-        updateOrderStatus("Waiting Review", orderNum);
+        session.setAttribute("orderNum", orderNum);
 
         ArrayList<Document> orders = getOrder(orderNum);
 
@@ -55,16 +36,21 @@ public class ImageUploadHelperServlet extends HttpServlet implements OrderInterf
             request.setAttribute("orderNotes", orders.get(0).getString("orderNotes"));
         }
 
+        String patientName = orders.get(0).getString("firstName") + "_" + orders.get(0).getString("lastName");
+
         File images = new File("C:\\Users\\cwimp\\IdeaProjects\\XamineRIS-RE-JAVA\\src\\main\\webapp\\patientImages\\" + patientName);
         String contents[] = images.list();
         String imageList = "";
 
         for(int i = 0; i < contents.length; i++)
         {
-            imageList += "<form method=\"POST\" action=\"/imageTechView\">" + contents[i] + "<button type=\"submit\" name=\"btn\" value=\"/patientImages/" + patientName + "/" + contents[i] + "\">View</button></form><br>";
+            imageList += "<form method=\"POST\" action=\"/imageRadioView\">" + contents[i] + "<button type=\"submit\" name=\"btn\" value=\"/patientImages/" + patientName + "/" + contents[i] + "\">View</button></form><br>";
         }
 
         request.setAttribute("images", imageList);
-        getServletContext().getRequestDispatcher("/technician/orderTechView.jsp").forward(request, response);
+
+        updateOrderStatus("Complete", orderNum);
+
+        getServletContext().getRequestDispatcher("/radiologist/orderRadioPage.jsp").forward(request, response);
     }
 }
